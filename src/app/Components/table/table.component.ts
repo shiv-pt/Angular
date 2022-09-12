@@ -1,23 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-
-
-export class Table{
-  constructor(
-  public regno: string,
-  public fname: string,
-  public mname: string,
-  public lname: string,
-  public gender: string,
-  public cat: string,
-  public mob: number,
-  public admdate: Date,
-  //public tno: number,
-  ){
-
-  }
-}
+import { Table } from 'src/app/Table';
+import { Observable } from 'rxjs';
+import { APIService } from 'src/app/Service/api.service';
+import { Root } from 'src/app/Interface/root';
 
 @Component({
   selector: 'app-table',
@@ -25,36 +12,20 @@ export class Table{
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
-  tables: any;
-  constructor(
-    private httpClient: HttpClient 
-  ) { }
+  title = 'StudentData';
+  root!: Root; 
+  constructor(private apiService: APIService){}
 
   ngOnInit(): void {
-    this.getTables();
+    this.onGetData();
   }
-
-  getTables(){
-    this.httpClient.get<any>('https://es-school-service-dev-zm5xloquaa-em.a.run.app/public/getStudent').subscribe(
-      response => {
-        console.log(Object.values(response.list));
-        this.tables = Object.values(response.list);
+  onGetData(): void {
+    this.apiService.getData().subscribe(
+      (response) => {
+        console.log(response);
+        console.log(response.list);
+        this.root = response;
       }
     );
   }
 }
- /*pipe(map(response => ({
-      regno: response.list.registrationNumber,
-      fname: response.list.firstName,
-      mname: response.list.middleName,
-      lname: response.list.lasttName,
-      gender: response.list.firstName,
-      cat: response.list.gender,
-      mob: response.list.category,
-      admdate: response.list.admissionDate,
-      //tno: response.list.transportInfo.using,
-  } as Table)))
-  .subscribe(response => console.log(response));*/
-
-  

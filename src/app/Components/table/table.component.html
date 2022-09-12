@@ -14,7 +14,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let table of tables; let i=index">
+      <tr *ngFor="let table of root.list; let i=index">
         <ng-container><td>{{i+1}}</td></ng-container>
         <td><span>{{table.registrationNumber}}</span></td>
         <td><span>{{table.firstName}} {{table.middleName}} {{table.lastName}}</span></td>
