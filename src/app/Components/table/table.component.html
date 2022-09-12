@@ -22,12 +22,12 @@
         <td><span>{{table.category}}</span></td>
         <td *ngIf="table.mobileNumber; else elseStatement"><span>{{table.mobileNumber}}</span></td>
         <ng-template #elseStatement><td><span>Not Available</span></td></ng-template>
-        <td *ngIf="table.admissionDate; else elseStatement"><span>{{table.admissionDate | slice:0:10}}</span></td>
-        <ng-template #elseStatement><td><span>Not Available</span></td></ng-template>
-        <td *ngIf="table.transportInfo && table.transportInfo.using=='Yes'; else elseStatement"><span>{{table.transportInfo.routeNumber}}</span></td>
-        <ng-template #elseStatement><td><span>Not Applicable</span></td></ng-template>
-        <td *ngIf="table.transportInfo && table.transportInfo.using=='Yes'; else elseStatement"><span>200</span></td>
-        <ng-template #elseStatement><td><span>Not Applicable</span></td></ng-template>
+        <td *ngIf="table.admissionDate; else elseStatement1"><span>{{table.admissionDate | slice:0:10}}</span></td>
+        <ng-template #elseStatement1><td><span>Not Available</span></td></ng-template>
+        <td *ngIf="table.transportInfo && table.transportInfo.using=='Yes'; else elseStatement2"><span>{{table.transportInfo.routeNumber}}</span></td>
+        <ng-template #elseStatement2><td><span>Not Applicable</span></td></ng-template>
+        <td *ngIf="table.transportInfo && table.transportInfo.using=='Yes'; else elseStatement3"><span>200</span></td>
+        <ng-template #elseStatement3><td><span>Not Applicable</span></td></ng-template>
       </tr>
       </tbody>
     </table>
